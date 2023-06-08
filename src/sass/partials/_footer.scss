@@ -1,0 +1,68 @@
+@import '../variables';
+
+footer {
+    padding: 32px 19px 100px;
+
+    .bottom {
+        @include flex(center, space-between, $fd: column);
+        gap: 15px;
+
+        .copyright {
+            @include primary($fs: .875rem);
+        }
+
+        .surge {
+            @include flex(center, $fd: column);
+            gap: 9px;
+
+            * {
+                @include primary($fs: .875rem);
+            }
+
+            > a, svg {
+                @include svg-size(110px, 28px);
+
+                &:hover {
+                    path {
+                        fill: #afca0b;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media #{$small} {
+    footer {
+        padding: 32px 5vw 100px;
+
+        .bottom {
+            .surge {
+                @include flex(center, center, $fd: row);
+                gap: 7px;
+            }
+        }
+    }
+}
+
+@media #{$medium} {
+    footer {
+        padding: 32px 7.5vw 100px;
+    }
+}
+
+@media #{$large} {
+    footer {
+        padding: 32px 7.5vw 100px;
+
+        .bottom {
+            flex-direction: row;
+        }
+    }
+}
+
+@media #{$x-large} {
+    footer {
+        padding: 34px 10vw 43px;
+    }
+}

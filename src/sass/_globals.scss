@@ -1,0 +1,301 @@
+@use "sass:math";
+@import './variables';
+
+* {
+    @include primary();
+    // border: 1px solid red;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    ::selection {
+        color: default;
+        background-color: default;
+    }
+
+    body {
+        @include flex($jc: space-between, $fd: column);
+        min-height: 200vh;
+        background: $white;
+        position: relative;
+        padding-top: $nav-height-sm;
+
+        &.no-scroll {
+            overflow-y: hidden;
+        }
+
+        section {
+            position: relative;
+        }
+    }
+
+    // Forms
+
+    form {
+        position: relative;
+
+        .fields {
+            @include flex($fd: column);
+            gap: 15px;
+        }
+
+        input, select, textarea {
+            @include primary(400, 1.125rem, $black !important);
+            height: 43px;
+            width: 100%;
+            border: 1.5px solid $black;
+            background: $white;
+            padding: 0 10px;
+            outline-color: default;
+        }
+
+        .file {
+            @include flex(center);
+            gap: 10px;
+        }
+
+        textarea {
+            resize: none;
+            padding: 10px;
+            height: 145px;
+        }
+
+        label {
+            @include primary();
+            margin-bottom: 5px;
+            display: block;
+
+            &.file-upload {
+                @include flex(center, center);
+                position: relative;
+                margin: 0;
+                height: 43px;
+                width: 194px;
+                border: 1.5px solid $black;
+                background: #F8F8F8;
+                cursor: pointer;
+
+                input {
+                    @include pos-abs();
+                    visibility: hidden;
+                }
+            }
+        }
+
+        .privacy-policy {
+            margin: 10px 0;
+            
+            * {
+                @include primary($fs: 0.75rem);
+                line-height: 1.3;
+            }
+
+            a {
+                font-weight: 600;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .captcha {
+            height: 80px;
+            overflow: hidden;
+
+            .captcha-placeholder {
+                @include svg-size(304px, auto);
+            }
+
+            .g-recaptcha, .captcha-placeholder {
+                transform: scale(0.87);
+                transform-origin: 0 0;
+            }
+        }
+
+        &.captcha-loaded {
+            .captcha-placeholder {
+                display: none;
+            }
+        }
+
+        .error, .success {
+            @include primary();
+            margin: 5px 0;
+        }
+
+        .error {
+            color: red !important;
+        }
+
+        .invisible {
+            position: absolute;
+            visibility: hidden;
+        }
+    }
+
+    // Accordion
+    .accordion-wrapper {
+        $speed: .3s;
+        border-bottom: 1px solid $black;
+        height: fit-content;
+
+        .accordion {
+            @include flex(center, space-between);
+            gap: 10px;
+            cursor: pointer;
+
+            svg {
+                transition: transform $speed ease-in-out;
+            }
+        }
+
+        .panel {
+            max-height: 0px;
+            overflow: hidden;
+            transition: max-height $speed ease-in-out;
+        }
+
+        &.open {
+            .accordion svg {
+                transform: rotate(90deg);
+            }
+            
+            .panel {
+                max-height: 600px;
+            }
+        }
+    }
+
+    // Content
+    .content {
+        &.small * {
+            font-size: .875rem;
+        }
+
+        &.semi-bold * {
+            font-weight: 600;
+        }
+
+        &.white * {
+            color: $white !important;
+        }
+
+        strong {
+            font-weight: 600 !important;
+        }
+
+        a {
+            text-decoration: underline;
+        }
+    }
+
+    // Button
+    .btns {
+        @include flex();
+        gap: 10px;
+    }
+
+    .btn {
+        @include btn();
+    }
+
+    // Glide 
+    .glide {
+        .glide__controls {
+            @include flex();
+            gap: 12px;
+
+            button {
+                all: unset;
+                cursor: pointer;
+            }
+        }
+
+        .glide__slides {
+            cursor: grab;
+
+            &:active, &:focus {
+                cursor: grabbing;
+            }
+        }
+    }
+
+    a {
+        display: inline-block;
+        height: fit-content;
+        width: fit-content;
+        text-decoration: none;
+    }
+
+    hr {
+        border: none;
+        height: 1px;
+        width: 100%;
+        background: $black;
+    }
+
+    picture {
+        font-size: 0;
+        line-height: 0;
+        height: fit-content;
+        width: fit-content;
+
+        ::selection {
+            background: none;
+        }
+    }
+
+    img, video, iframe {
+        width: 100%;
+        height: auto;
+        display: block;
+        border: none;
+    }
+
+    svg {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media #{$x-large} {
+    * {
+        body {
+            padding-top: $nav-height-lg;
+        }
+
+        // Forms
+        form {
+            .privacy-policy {
+                * {
+                    font-size: .875rem;
+                }
+            }
+        }
+
+        // Content
+        .content {
+            &.small * {
+                font-size: 1rem;
+            }
+
+            &.large * {
+                font-size: 1.125rem;
+            }
+        }
+    }
+}
+
+@media #{$xx-large} {
+    * {
+        // Forms 
+        form {
+            .captcha {
+                .g-recaptcha, .captcha-placeholder {
+                    transform: scale(1);
+                }
+            }
+        }
+    }
+}
