@@ -1,23 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
 
-const getInitialState = () => {
-    // localStorage.removeItem("notes")
-    const initial = JSON.stringify([
-        {
-          id: 1,
-          title: 'Shopping List',
-          content: 'Test',
-          date: 'Fri 14th April 2023'
-        }
-    ]);
-
-    if (! localStorage.getItem("notes")) {
-        localStorage.setItem("notes", initial);
-        localStorage.getItem("notes");
-    }
-
-    return JSON.parse(localStorage.getItem("notes"));
-}
+import {
+    formatDate,
+    getInitialState,
+} from '../../utils/helpers';
 
 export const notesSlice = createSlice({
     name: 'notes',
@@ -27,14 +14,14 @@ export const notesSlice = createSlice({
     },
 
     reducers: {
-        createNote: (state) => {
+        createNote: (state, action) => {
         state.value = [
             ...state.value,
             {
-                id: 1,
-                title: 'Shopping List',
-                content: 'Test',
-                date: 'Fri 14th April 2023'
+                id: uuidv4(),
+                title: action.payload.title,
+                content: action.payload.content,
+                date: formatDate(new Date())
             }
         ]
 

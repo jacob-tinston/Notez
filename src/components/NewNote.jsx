@@ -1,9 +1,7 @@
 import { React, useState} from 'react';
 
 import { useDispatch } from 'react-redux';
-import {
-  createNote,
-} from '../features/notes/notesSlice';
+import { createNote } from '../features/notes/notesSlice';
 
 import { Link } from "react-router-dom";
 
@@ -17,15 +15,15 @@ export const NewNote = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createNote(title, content));
+    dispatch(createNote({title, content}));
   }
 
   return (
     <div className='new-note'>
       <form onSubmit={handleSubmit} className="inner">
-        <input defaultValue={title} name="title" className="title"></input>
+        <input defaultValue={title} onChange={e => setTitle(e.target.value)} name="title" className="title"></input>
 
-        <textarea defaultValue={content} name="content" id="" cols="30" rows="10" placeholder='Start typing here...'></textarea>
+        <textarea defaultValue={content} onChange={e => setContent(e.target.value)} name="content" id="" cols="30" rows="10" placeholder='Start typing here...'></textarea>
 
         <div className="btns">
           <button type='submit' className="btn yellow">Save</button>
