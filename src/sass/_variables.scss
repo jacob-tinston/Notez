@@ -1,13 +1,13 @@
 // Fonts
 
-@mixin primary($fw: 400, $fs: 1rem, $c: $black) {
+@mixin primary($fw: 700, $fs: 1rem, $c: $black) {
     font: {
-        family: sans-serif;
+        family: 'Inter', sans-serif;
         weight: $fw;
         size: $fs;
     }
     color: $c;
-    line-height: 1.3;
+    line-height: 19px;
 }
 
 // Helpers
@@ -66,7 +66,31 @@
 }
 
 @mixin btn() {
-    all: unset;
+    @include flex(center, center);
+    width: fit-content;
+    height: 40px;
+    border-radius: 100px;
+    background: $white;
+    padding: 0 30px;
+    white-space: nowrap;
+    border: none;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+    
+    &.yellow {
+        background: $yellow;
+    }
+
+    &.grey {
+        background: $grey;
+        color: $white;
+    }
+
+    &:hover {
+        background: $black;
+        color: $yellow;
+    }
+
 }
 
 @mixin svg-list($type: 0, $gap: 10px, $width: 20px, $height: $width) {
@@ -112,3 +136,5 @@ $nav-height-lg: 100px;
 
 $black:#000;
 $white:#FFF;
+$grey: #9F9F9F;
+$yellow: #FFEB3A;

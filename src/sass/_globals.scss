@@ -15,10 +15,10 @@
 
     body {
         @include flex($jc: space-between, $fd: column);
-        min-height: 200vh;
+        min-height: 100vh;
         background: $white;
         position: relative;
-        padding-top: $nav-height-sm;
+        background: linear-gradient(to bottom, $yellow 281px, $white 281px);
 
         &.no-scroll {
             overflow-y: hidden;
@@ -131,6 +131,38 @@
         .invisible {
             position: absolute;
             visibility: hidden;
+        }
+    }
+
+    .custom-input {
+        position: relative;
+        max-width: 180px;
+        width: 100%;
+
+        .search {
+            @include flex(center);
+            @include pos-abs();
+            left: 10px;
+            width: 90px;
+            height: 100%;
+            width: fit-content;
+            width: 19px;
+            cursor: pointer;
+
+            svg {
+                @include svg-size(80px, 19px);
+                pointer-events: none;
+            }
+        }
+
+        input {
+            width: 100%;
+            height: 40px;
+            border-radius: 100px;
+            background: $white;
+            padding: 0 20px 0 40px;
+            border: none;
+            outline: none;
         }
     }
 
@@ -261,10 +293,6 @@
 
 @media #{$x-large} {
     * {
-        body {
-            padding-top: $nav-height-lg;
-        }
-
         // Forms
         form {
             .privacy-policy {
