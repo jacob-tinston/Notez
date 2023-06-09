@@ -1,17 +1,34 @@
-import React from 'react';
+import { React, useState} from 'react';
+
+import { useDispatch } from 'react-redux';
+import {
+  createNote,
+} from '../features/notes/notesSlice';
+
 import { Link } from "react-router-dom";
+
 import '../sass/partials/new-note.scss';
 
 export const NewNote = () => {
+  const dispatch = useDispatch();
+
+  const [title, setTitle] = useState("New note");
+  const [content, setContent] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createNote(title, content));
+  }
+
   return (
     <div className='new-note'>
-      <form className="inner">
-        <input name="title" className="title" defaultValue='New note'></input>
+      <form onSubmit={handleSubmit} className="inner">
+        <input defaultValue={title} name="title" className="title"></input>
 
-        <textarea name="content" id="" cols="30" rows="10" placeholder='Start typing here...'></textarea>
+        <textarea defaultValue={content} name="content" id="" cols="30" rows="10" placeholder='Start typing here...'></textarea>
 
         <div className="btns">
-          <button className="btn yellow">Save</button>
+          <button type='submit' className="btn yellow">Save</button>
           
           <Link to={`/`} className='btn grey'>Cancel</Link>
         </div>

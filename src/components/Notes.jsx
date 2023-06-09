@@ -1,16 +1,12 @@
-import { React, useState } from 'react';
+import React from 'react';
+
+import { useSelector } from 'react-redux';
+
 import { Link } from "react-router-dom";
 import '../sass/partials/notes.scss';
 
 const Notes = () => {
-  const [notes, setNotes] = useState(localStorage.getItem("notes") ?? [
-    {
-      id: 1,
-      title: 'Shopping List',
-      content: 'Test',
-      date: 'Fri 14th April 2023'
-    }
-  ]);
+  const notes = useSelector((state) => state.notes.value);
 
   return (
     <div className='notes'>
