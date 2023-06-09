@@ -27,9 +27,9 @@ export const EditNote = (props) => {
   return (
     <div className='new-note'>
       <form onSubmit={handleSubmit} className="inner">
-        <input defaultValue={title} onChange={e => setTitle(e.target.value)} name="title" className="title"></input>
+        <input value={title} onChange={e => setTitle(e.target.value)} name="title" className="title"></input>
 
-        <textarea defaultValue={content} onChange={e => setContent(e.target.value)} name="content" id="" cols="30" rows="10" placeholder='Start typing here...'></textarea>
+        <textarea value={content} onChange={e => setContent(e.target.value)} name="content" id="" cols="30" rows="10" placeholder='Start typing here...'></textarea>
 
         <div className="btns">
           <button type='submit' className="btn yellow">Save</button>
