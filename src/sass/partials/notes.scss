@@ -47,6 +47,10 @@
                 gap: 10px;
                 height: 14px;
                 margin-bottom: 20px;
+
+                > div {
+                    cursor: pointer;
+                }
     
                 svg {
                     @include svg-size(14px);
