@@ -22,6 +22,55 @@
         max-width: 1240px;
         margin: 0 auto;
 
+        .flip-card {
+            @include svg-size(180px);
+            perspective: 1000px;
+
+            &.active {
+                .flip-card-inner {
+                    transform: rotateY(180deg);
+                }
+            }
+
+            .flip-card-inner {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                transition: transform 0.8s;
+                transform-style: preserve-3d;
+
+                .flip-card-front, .flip-card-back {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    backface-visibility: hidden;
+                }
+
+                .flip-card-back {
+                    transform: rotateY(180deg);
+
+                    .note {
+                        @include flex(center, $fd: column);
+                        background: $yellow;
+
+                        .title {
+                            text-align: center;
+                        }
+
+                        .btns {
+                            flex-direction: column;
+
+                            .btn {
+                                font-size: .625rem;
+                                width: 113px;
+                                height: 26px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         .note {
             @include flex($jc: space-between, $fd: column);
             padding: 22px 20px 8px 16px;

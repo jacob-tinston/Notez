@@ -47,6 +47,14 @@ export const notesSlice = createSlice({
             localStorage.setItem("notes", JSON.stringify(state.value));
         },
 
+        deleteNote: (state, action) => {
+            state.queried = state.value = state.value.filter(note => {
+                return note.id !== action.payload.id;
+            })
+
+            localStorage.setItem("notes", JSON.stringify(state.value));
+        },
+
         stageDeleting: (state, action) => {
             const index = state.value.findIndex(note => {
                 return note.id === action.payload.id;
@@ -83,6 +91,6 @@ export const notesSlice = createSlice({
     },
 })
 
-export const { createNote, editNote, stageDeleting, unstageDeleting, findNote, searchNotes } = notesSlice.actions;
+export const { createNote, editNote, stageDeleting, unstageDeleting, deleteNote, findNote, searchNotes } = notesSlice.actions;
 
 export default notesSlice.reducer;
