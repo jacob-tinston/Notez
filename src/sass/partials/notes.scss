@@ -97,8 +97,13 @@
                 height: 14px;
                 margin-bottom: 20px;
 
-                > div {
+                > div, a {
                     cursor: pointer;
+                    transition: color .1s ease-in-out;
+
+                    &:hover {
+                        color: $yellow;
+                    }
                 }
     
                 svg {
