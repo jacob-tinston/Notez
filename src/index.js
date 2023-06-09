@@ -12,6 +12,7 @@ import {
 import Layout from "./routes/Layout";
 import Home from "./routes/Home";
 import NewNote from "./routes/NewNote";
+import EditNote from "./routes/EditNote";
 
 import reportWebVitals from './reportWebVitals';
 import './sass/app.scss';
@@ -27,6 +28,13 @@ const router = createBrowserRouter([
       {
         path: "/new-note",
         element: <NewNote />,
+      },
+      {
+        path: "/edit-note/:id",
+        element: <EditNote />,
+        loader: ({ params }) => {
+          return params.id;
+        },
       },
     ],
   },

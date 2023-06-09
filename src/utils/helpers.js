@@ -8,14 +8,43 @@ export const formatDate = (date) => {
 }
 
 export const getInitialState = () => {
-    localStorage.removeItem("notes")
     const initial = JSON.stringify([
         {
           id: uuidv4(),
           title: 'Shopping List',
-          content: 'Test',
+          content: '- Eggs - Milk - Milk - Bread - Oranges',
           date: formatDate(new Date())
-        }
+        },
+        {
+            id: uuidv4(),
+            title: 'Todo',
+            content: '- Pick kids up - Go to hairdressers - Food Shop',
+            date: formatDate(new Date())
+        },
+        {
+            id: uuidv4(),
+            title: 'Email',
+            content: 'Dear Judith, I hope this email finds you well.',
+            date: formatDate(new Date())
+        },
+        {
+            id: uuidv4(),
+            title: 'Shopping List',
+            content: '- Eggs - Milk - Milk - Bread - Oranges',
+            date: formatDate(new Date())
+        },
+        {
+            id: uuidv4(),
+            title: 'Todo',
+            content: '- Pick kids up - Go to hairdressers - Food Shop',
+            date: formatDate(new Date())
+        },
+        {
+            id: uuidv4(),
+            title: 'Email',
+            content: 'Dear Judith, I hope this email finds you well.',
+            date: formatDate(new Date())
+        },
     ]);
 
     if (! localStorage.getItem("notes")) {

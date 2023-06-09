@@ -1,50 +1,80 @@
 @import '../variables';
 
 .notes {
-    @include flex(center, center, $fw: wrap);
-    gap: 32px;
     padding: 0 5vw;
-    margin: 77px 0;
+    width: 100%;
 
-    .note {
-        padding: 22px 20px 8px 16px;
-        width: 180px;
-        border-radius: 10px;
-        background: $white;
-        filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.078));
-        transition: all .2s ease-in-out;
+    > .title {
+        @include primary(700, 1.25rem);
+        margin-bottom: 27px;
+        width: 100%;
+        border: none;
+        outline: none;
+        background: none;
+        opacity: 0;
+    }
 
-        &:hover {
-            transform: translateY(-3px);
-            filter: drop-shadow(0px 0px 13px rgba(0, 0, 0, 0.078));
-        }
+    .inner {
+        @include flex(stretch, center, $fw: wrap);
+        gap: 32px;
+        height: fit-content;
+        width: 100%;
+        max-width: 1240px;
+        margin: 0 auto;
 
-        .actions {
-            @include flex(center, flex-end);
-            gap: 10px;
-            height: 14px;
-            margin-bottom: 20px;
+        .note {
+            @include flex($jc: space-between, $fd: column);
+            padding: 22px 20px 8px 16px;
+            width: 180px;
+            min-height: 180px;
+            height: auto;
+            border-radius: 10px;
+            background: $white;
+            filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.078));
+            transition: all .2s ease-in-out;
+    
+            &:hover {
+                transform: translateY(-3px);
+                filter: drop-shadow(0px 0px 13px rgba(0, 0, 0, 0.078));
+            }
 
-            svg {
-                @include svg-size(14px);
+            .wrapper {
+                margin-bottom: 26px;
+            }
+    
+            .actions {
+                @include flex(center, flex-end);
+                gap: 10px;
+                height: 14px;
+                margin-bottom: 20px;
+    
+                svg {
+                    @include svg-size(14px);
+                }
+            }
+    
+            .title {
+                @include primary(700, 1.125rem);
+                margin-bottom: 7px;
+            }
+    
+            .content {    
+                * {
+                    @include primary(400, .875rem, $grey);
+                }
+            }
+    
+            .date {
+                @include primary(400, .625rem, $grey);
             }
         }
+    }
+}
 
-        .title {
-            @include primary(700, 1.125rem);
-            margin-bottom: 7px;
-        }
-
-        .content {
-            margin-bottom: 26px;
-
-            * {
-                @include primary(400, .875rem, $grey);
-            }
-        }
-
-        .date {
-            @include primary(400, .625rem, $grey);
+@media #{$medium} {
+    .notes {
+        .inner {
+            justify-content: flex-start;
         }
     }
 }

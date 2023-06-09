@@ -1,8 +1,19 @@
 import React from 'react';
+
+import { useDispatch } from 'react-redux';
+import { searchNotes } from '../features/notesSlice';
+
 import { Link } from "react-router-dom";
+
 import logo from '../logo.svg';
 
 const Header = () => {
+  const dispatch = useDispatch();
+
+  const handleSearch = (query) => {
+    dispatch(searchNotes(query))
+  }
+
   return (
     <header>
       <div className="logo">
@@ -21,7 +32,7 @@ const Header = () => {
             </svg>
           </div>
 
-          <input type="search" placeholder='Search' />
+          <input onChange={e => handleSearch(e.target.value)} type="search" placeholder='Search' />
         </div>
       </div>
     </header>

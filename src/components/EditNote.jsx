@@ -1,21 +1,27 @@
-import { React, useState} from 'react';
+import { React, useEffect, useState} from 'react';
 
 import { useDispatch } from 'react-redux';
-import { createNote } from '../features/notesSlice';
+import { editNote } from '../features/notesSlice';
 
 import { Link } from "react-router-dom";
 
 import '../sass/partials/new-note.scss';
 
-export const NewNote = () => {
+export const EditNote = (props) => {
   const dispatch = useDispatch();
 
-  const [title, setTitle] = useState("New note");
+  const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  
+  useEffect(() => {
+    setTitle(props.note.title)
+    setContent(props.note.content)
+  }, [props.note])
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createNote({title, content}));
+    dispatch(editNote({title, content}));
   }
 
   return (

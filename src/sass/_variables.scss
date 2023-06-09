@@ -7,7 +7,6 @@
         size: $fs;
     }
     color: $c;
-    line-height: 19px;
 }
 
 // Helpers
@@ -130,9 +129,6 @@ $medium: "only screen and (min-width: 768px)";
 $large: "only screen and (min-width: 992px)";
 $x-large: "only screen and (min-width: 1200px)";
 $xx-large: "only screen and (min-width: 1536px)";
-
-$nav-height-sm: 75px;
-$nav-height-lg: 100px;
 
 $black:#000;
 $white:#FFF;

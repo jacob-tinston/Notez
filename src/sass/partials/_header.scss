@@ -20,6 +20,8 @@ header {
         @include flex(center, space-between);
         gap: 5vw;
         width: 100%;
+        max-width: 1240px;
+        margin: 0 auto;
     }
 }
 
@@ -36,6 +38,6 @@ header {
 
 @media #{$x-large} {
     header {
-        padding: 47px 10vw;
+        padding: 47px 5vw;
     }
 }
